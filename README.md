@@ -12,12 +12,12 @@ docker build -t dall_e_encoder_decoder_server .
 docker run --gpus all -w /app -p 8080:8080 -it dall_e_encoder_decoder_server python3 main.py
 ```
 
-# Usage from browser:
+# Testing the API from your browser:
 Open up `http://0.0.0.0:8080/` in your browser to try it out. You'll see a simple interface to "perturb" an image by repeatedly encoding, changing some values slightly, and decoding:
 
 ![perturbing penguin by repeatedly encoding, changing values, and decoding](https://github.com/josephrocca/dall-e-encoder-decoder-server/raw/main/penguin_perturb.gif)
 
-See `index.html` for the code. Here's a simple code example:
+See `index.html` for the code. You can send POST requests at `/encode` and `/decode` as shown in the example below:
 
 ```html
 <input type="file" id="fileEl">
