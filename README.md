@@ -2,11 +2,14 @@ Based on this: https://github.com/openai/DALL-E/blob/master/notebooks/usage.ipyn
 
 # Setup:
 ```bash
+# Build the docker image:
 git clone https://github.com/josephrocca/dall-e-encoder-decoder-server
 cd dall-e-encoder-decoder-server
 docker build -t dall_e_encoder_decoder_server .
+
+# Run the image:
 # Omit `--gpus all` in the following command if you haven't installed nvidia's docker tooling (falls back to CPU)
-docker run --gpus all -v $PWD:/app -w /app -p 8080:8080 -it dall_e_encoder_decoder_server bash
+docker run --gpus all -w /app -p 8080:8080 -it dall_e_encoder_decoder_server python3 main.py
 ```
 
 # Usage from browser:
