@@ -13,7 +13,11 @@ docker run --gpus all -w /app -p 8080:8080 -it dall_e_encoder_decoder_server pyt
 ```
 
 # Usage from browser:
-Open up `http://0.0.0.0:8080/` in your browser to try it out. Here's a simple code example of how you can use it:
+Open up `http://0.0.0.0:8080/` in your browser to try it out. You'll see a simple interface to "perturb" an image by repeatedly encoding, changing some values slightly, and decoding:
+
+![perturbing penguin by repeatedly encoding, changing values, and decoding](https://github.com/josephrocca/dall-e-encoder-decoder-server/raw/main/penguin_perturb.gif)
+
+See `index.html` for the code. Here's a simple code example:
 
 ```html
 <input type="file" id="fileEl">
