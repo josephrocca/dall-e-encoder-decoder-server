@@ -5,11 +5,11 @@ Based on this: https://github.com/openai/DALL-E/blob/master/notebooks/usage.ipyn
 # Build the docker image:
 git clone https://github.com/josephrocca/dall-e-encoder-decoder-server
 cd dall-e-encoder-decoder-server
-docker build -t dall_e_encoder_decoder_server .
+docker build -t dall-e-encoder-decoder-server .
 
 # Run the image:
 # Omit `--gpus all` in the following command if you haven't installed nvidia's docker tooling (falls back to CPU)
-docker run --gpus all -w /app -p 8080:8080 -it dall_e_encoder_decoder_server python3 main.py
+docker run --gpus all -w /app -p 8080:8080 -it dall-e-encoder-decoder-server python3 main.py
 ```
 
 # Testing the API from your browser:
@@ -17,7 +17,7 @@ Open up `http://0.0.0.0:8080/` in your browser to try it out. You'll see a simpl
 
 ![perturbing penguin by repeatedly encoding, changing values, and decoding](https://github.com/josephrocca/dall-e-encoder-decoder-server/raw/main/penguin_perturb.gif)
 
-See `index.html` for the code. You can send POST requests at `/encode` and `/decode` as shown in the example below:
+See `index.html` for the code. You can send POST requests (with **jpg** images) at `/encode` and `/decode` as shown in the example below:
 
 ```html
 <input type="file" id="fileEl">
