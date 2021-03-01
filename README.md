@@ -14,11 +14,13 @@ wget --directory-prefix=./dall-e https://cdn.openai.com/dall-e/decoder.pkl
 
 # Run the image:
 # Omit `--gpus all` in the following command if you haven't installed nvidia's docker tooling (falls back to CPU)
-docker run --gpus all -v .:/app -w /app -p 8080:8080 -it dall-e-encoder-decoder-server python3 main.py
+docker run --gpus all -v $PWD:/app -w /app -p 8080:8080 -it dall-e-encoder-decoder-server python3 main.py
+
+# After a little while it will say "Serving on http://0.0.0.0:8080", at which point the API is ready.
 ```
 
 # Testing the API from your browser:
-Open up `http://0.0.0.0:8080/` in your browser to try it out. You'll see a simple interface where you can test the API by uploading an image that gets repeatedly "perturbed" in between encoding and decoding:
+Open up `http://0.0.0.0:8080` in your browser to try it out. You'll see a simple interface where you can test the API by uploading an image that gets repeatedly "perturbed" in between encoding and decoding:
 
 ![perturbing penguin by repeatedly encoding, changing values, and decoding](https://github.com/josephrocca/dall-e-encoder-decoder-server/raw/main/penguin_perturb.gif)
 
