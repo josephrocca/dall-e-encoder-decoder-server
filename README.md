@@ -7,9 +7,14 @@ git clone https://github.com/josephrocca/dall-e-encoder-decoder-server
 cd dall-e-encoder-decoder-server
 docker build -t dall-e-encoder-decoder-server .
 
+# Download the encoder-decoder model files:
+mkdir dall-e
+wget --directory-prefix=./dall-e https://cdn.openai.com/dall-e/encoder.pkl
+wget --directory-prefix=./dall-e https://cdn.openai.com/dall-e/decoder.pkl
+
 # Run the image:
 # Omit `--gpus all` in the following command if you haven't installed nvidia's docker tooling (falls back to CPU)
-docker run --gpus all -w /app -p 8080:8080 -it dall-e-encoder-decoder-server python3 main.py
+docker run --gpus all -v .:/app -w /app -p 8080:8080 -it dall-e-encoder-decoder-server python3 main.py
 ```
 
 # Testing the API from your browser:
