@@ -10,7 +10,7 @@ docker run --gpus all -v $PWD:/app -w /app -p 8080:8080 -it dall_e_encoder_decod
 ```
 
 # Usage from browser:
-Open up `http://0.0.0.0:8080/` in your browser,
+Open up `http://0.0.0.0:8080/` in your browser to try it out. Here's a simple code example of how you can use it:
 
 ```html
 <input type="file" id="fileEl">
