@@ -78,4 +78,3 @@ imgEl.src = URL.createObjectURL(result);
 * 11.69 images per second at size 128 **(6x faster)**
 * 9.80 images per second at size 256  **(14x faster)**
 * 5.49 images per second at size 512  **(28.8x faster)**
-```
