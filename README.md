@@ -80,3 +80,9 @@ For a particular image I tested (speed will vary based on input image dimensions
 * 11.69 images per second at size 128 **(6x faster)**
 * 9.80 images per second at size 256  **(14x faster)**
 * 5.49 images per second at size 512  **(28.8x faster)**
+
+# Comparison to JPEG & WEBP
+
+I wanted to get a rough idea of how it compares to common image formats in terms of visual quality at a constant file size. All 3 were compressed to ~1.9kb (at 70% quality for JPEG and WEBP).
+
+![comparison between DALL-E encoder/decoder and JPEG and WEBP compression](https://github.com/josephrocca/dall-e-encoder-decoder-server/raw/main/compression-comparison.jpg)
