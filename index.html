@@ -20,6 +20,10 @@
 
   <script>
     async function perturb(size) {
+      if(Math.min(...await blobToImageDimensions(fileEl.files[0])) < size) {
+        alert(`Please upload an image that's bigger than ${size} pixels (for both width and height).`);
+        return;
+      }
       while(1) {
         let blob = await fetch(imgEl.src).then(r => r.blob());
         let formData = new FormData();
@@ -50,6 +54,10 @@
     }
     
     async function benchmarkEncoder() {
+      if(Math.min(...await blobToImageDimensions(fileEl.files[0])) < 512) {
+        alert("Please upload an image that's bigger than 512 pixels (for both width and height) to run the benchmark.");
+        return;
+      }
       let formData = new FormData();
       formData.append("file", fileEl.files[0]);
       for(let size of [64, 128, 256, 512]) {
@@ -64,7 +72,22 @@
       }
     }
     
+    async function blobToImageDimensions(blob) {
+      let url = URL.createObjectURL(blob);
+      let img = new Image();
+      return new Promise(r => {
+        img.onload = function() {
+          r([img.width, img.height]);
+        };
+        img.src = url;
+      });
+    }
+    
     async function encodeDecode(size) {
+      if(Math.min(...await blobToImageDimensions(fileEl.files[0])) < size) {
+        alert(`Please upload an image that's bigger than ${size} pixels (for both width and height).`);
+        return;
+      }
       let blob = await fetch(imgEl.src).then(r => r.blob());
       let formData = new FormData();
       formData.append("file", blob);
