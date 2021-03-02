@@ -6,16 +6,18 @@
   <title>DALL-E Encoder Decoder Demo</title>
 </head>
 <body>
-  <input type=file accept="image/jpeg" oninput="imgEl.src=window.URL.createObjectURL(this.files[0]); buttonsEl.style.display='';">
+  <input type=file id="fileEl" accept="image/jpeg" oninput="imgEl.src=window.URL.createObjectURL(this.files[0]); buttonsEl.style.display='';">
   <br><br>
   <img id=imgEl style="height:200px;">
   <br>
   <div id=buttonsEl style="display:none;">
-    <button onclick="start()">start</button>
+    <button onclick="perturb()">perturb</button>
+    <br><br>
+    <button onclick="benchmarkEncoder(); this.textContent='see browser console for results'">benchmark encoder</button>
   </div>
 
   <script>
-    async function start() {
+    async function perturb() {
       while(1) {
         let blob = await fetch(imgEl.src).then(r => r.blob());
         let formData = new FormData();
@@ -42,6 +44,21 @@
         imgEl.src = URL.createObjectURL(decoded);
 
         await new Promise(r => setTimeout(r, 10));
+      }
+    }
+    
+    async function benchmarkEncoder() {
+      let formData = new FormData();
+      formData.append("file", fileEl.files[0]);
+      for(let size of [64, 128, 256, 512]) {
+        let t = performance.now();
+        for(let i = 0; i < 10; i++) {
+          let encoded = await fetch("http://0.0.0.0:8080/encode/"+size, {
+            method: 'POST',
+            body: formData,
+          }).then(r => r.json());
+        }
+        console.log(`${(10 / ((performance.now()-t)/1000)).toFixed(2)} images per second at size ${size}`);
       }
     }
   </script>
