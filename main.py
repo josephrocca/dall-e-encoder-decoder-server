@@ -21,7 +21,7 @@ def preprocess(img, target_size):
     s = min(img.size)
 
     if s < target_size:
-        raise ValueError(f'min dim for image {s} < {target_image_size}')
+        raise ValueError(f'min dim for image {s} < {target_size}')
 
     r = target_size / s
     s = (round(r * img.size[1]), round(r * img.size[0]))
