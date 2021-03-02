@@ -24,7 +24,7 @@ Open up `http://0.0.0.0:8080` in your browser to try it out. You'll see a simple
 
 ![perturbing penguin by repeatedly encoding, changing values, and decoding](https://github.com/josephrocca/dall-e-encoder-decoder-server/raw/main/penguin_perturb.gif)
 
-See `index.html` for the code. You can send POST requests (with **jpg** images) at `/encode` and `/decode` as shown in the example below:
+See `index.html` for the code. You can send POST requests (with **jpg** images) at `/encode/<size>` and `/decode` as shown in the example code below.
 
 ```html
 <input type="file" id="fileEl">
@@ -37,15 +37,15 @@ let formData = new FormData();
 formData.append("file", fileEl.files[0]);
 
 // Encode:
-let encoded = await fetch("http://0.0.0.0:8080/encode", {
+let encoded = await fetch("http://0.0.0.0:8080/encode/256", {
   method: 'POST',
   body: formData,
 }).then(r => r.json());
 
 // The `encoded` variable now references a single-element array that
 // contains a 32x32 2D array of integers where each integer is between
-// 0 and 8191, inclusive. The size will be larger than 32x32 if
-// `target_image_size` (on the server) is set to a larger value.
+// 0 and 8191, inclusive. The size of the array depends on what you
+// choose for `/encode/<size>`.
 
 // Decode:
 let decoded = await fetch("http://0.0.0.0:8080/decode", {
@@ -58,9 +58,24 @@ imgEl.src = URL.createObjectURL(decoded);
 
 There's also an encode-decode path for testing:
 ```js
-let result = await fetch("http://0.0.0.0:8080/encode-decode", {
+let result = await fetch("http://0.0.0.0:8080/encode-decode/256", {
   method: 'POST',
   body: formData,
 }).then(r => r.blob());
 imgEl.src = URL.createObjectURL(result);
+```
+
+# Encoding Benchmarks
+
+### CPU:
+* 3.56 images per second at size 64
+* 1.95 images per second at size 128
+* 0.70 images per second at size 256
+* 0.19 images per second at size 512
+
+### GPU:
+* 12.85 images per second at size 64  **(3.6x faster)**
+* 11.69 images per second at size 128 **(6x faster)**
+* 9.80 images per second at size 256  **(14x faster)**
+* 5.49 images per second at size 512  **(28.8x faster)**
 ```
