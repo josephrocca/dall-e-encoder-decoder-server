@@ -67,6 +67,8 @@ imgEl.src = URL.createObjectURL(result);
 
 # Encoding Benchmarks
 
+For a particular image I tested (speed will vary based on input image dimensions):
+
 ### CPU:
 * 3.56 images per second at size 64
 * 1.95 images per second at size 128
