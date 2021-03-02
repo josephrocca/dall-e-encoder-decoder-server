@@ -83,6 +83,6 @@ For a particular image I tested (speed will vary based on input image dimensions
 
 # Comparison to JPEG & WEBP
 
-I wanted to get a rough idea of how it compares to common image formats in terms of visual quality at a constant file size. All 3 were compressed to ~1.9kb (at 70% quality for JPEG and WEBP).
+I wanted to get a rough idea of how it compares to common image formats in terms of visual quality at a constant file size. All 3 were compressed to ~1.9kb (by lowering the image size at 70% quality for JPEG and WEBP).
 
 ![comparison between DALL-E encoder/decoder and JPEG and WEBP compression](https://github.com/josephrocca/dall-e-encoder-decoder-server/blob/main/dalle-jpg-webp-compression-comparison.jpg?raw=true)
