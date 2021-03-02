@@ -62,15 +62,16 @@ def home():
 
 @app.route('/encode-decode', methods=["POST"])
 def encode_decode():
-  data = request.files['file']
-  x = preprocess(PIL.Image.open(data))
-  z_logits = enc(x.to(dev))
-  z = torch.argmax(z_logits, axis=1)
-  z = F.one_hot(z, num_classes=enc.vocab_size).permute(0, 3, 1, 2).float()
-  x_stats = dec(z).float()
-  x_rec = unmap_pixels(torch.sigmoid(x_stats[:, :3]))
-  x_rec = T.ToPILImage(mode='RGB')(x_rec[0])
-  return serve_pil_image(x_rec)
+  with torch.no_grad(): # https://github.com/pytorch/pytorch/issues/16417#issuecomment-566654504
+    data = request.files['file']
+    x = preprocess(PIL.Image.open(data))
+    z_logits = enc(x.to(dev))
+    z = torch.argmax(z_logits, axis=1)
+    z = F.one_hot(z, num_classes=enc.vocab_size).permute(0, 3, 1, 2).float()
+    x_stats = dec(z).float()
+    x_rec = unmap_pixels(torch.sigmoid(x_stats[:, :3]))
+    x_rec = T.ToPILImage(mode='RGB')(x_rec[0])
+    return serve_pil_image(x_rec)
 
 @app.route('/encode', methods=["POST"])
 def encode():
