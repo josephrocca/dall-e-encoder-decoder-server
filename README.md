@@ -86,3 +86,15 @@ For a particular image I tested (speed will vary based on input image dimensions
 I wanted to get a rough idea of how it compares to common image formats in terms of visual quality at a constant file size. All 3 were compressed to ~1.9kb (by lowering the image size at 70% quality for JPEG and WEBP).
 
 ![comparison between DALL-E encoder/decoder and JPEG and WEBP compression](https://github.com/josephrocca/dall-e-encoder-decoder-server/blob/main/dalle-jpg-webp-compression-comparison.jpg?raw=true)
+
+# Comparison to VQGAN
+
+These images are from [this notebook](https://colab.research.google.com/github/CompVis/taming-transformers/blob/master/scripts/reconstruction_usage.ipynb). VQGAN's reconstructions are impressive!
+
+![download](https://user-images.githubusercontent.com/1167575/129307207-7e78c757-e2a2-4d3d-ae07-5ffc086ece0e.png)
+![download (1)](https://user-images.githubusercontent.com/1167575/129307212-6f25643a-71c1-4d94-bf6a-b0d038b083d6.png)
+![download (2)](https://user-images.githubusercontent.com/1167575/129307216-647ec483-bde3-4ef3-9f6c-d316acc7733a.png)
+![download (3)](https://user-images.githubusercontent.com/1167575/129307220-c4c6daa4-f31c-4a85-a50a-4e84c654ce14.png)
+![download (4)](https://user-images.githubusercontent.com/1167575/129307222-53ca4220-bb4c-46f1-bc41-a126d89ea973.png)
+![download (5)](https://user-images.githubusercontent.com/1167575/129307223-f2ac3ca6-64dc-4a28-99c1-3fc1109dd9fa.png)
+
