@@ -22,7 +22,8 @@ docker run --gpus all -v $PWD:/app -w /app -p 8080:8080 -it dall-e-encoder-decod
 # Testing the API from your browser:
 Open up `http://0.0.0.0:8080` in your browser to try it out. You'll see a simple interface where you can test the API by uploading an image that gets repeatedly "perturbed" in between encoding and decoding:
 
-![perturbing penguin by repeatedly encoding, changing values, and decoding](https://github.com/josephrocca/dall-e-encoder-decoder-server/raw/main/penguin_perturb.gif)
+![perturbing penguin by repeatedly encoding, changing values, and decoding](https://user-images.githubusercontent.com/1167575/130863482-b8d08e3b-1c4b-4623-8064-e2c6b008e024.gif)
+
 
 See `index.html` for the code. You can send POST requests (with **jpg** images) at `/encode/<size>` and `/decode` as shown in the example code below.
 
@@ -85,7 +86,7 @@ For a particular image I tested (speed will vary based on input image dimensions
 
 I wanted to get a rough idea of how it compares to common image formats in terms of visual quality at a constant file size. All 3 were compressed to ~1.9kb (by lowering the image size at 70% quality for JPEG and WEBP).
 
-![comparison between DALL-E encoder/decoder and JPEG and WEBP compression](https://github.com/josephrocca/dall-e-encoder-decoder-server/blob/main/dalle-jpg-webp-compression-comparison.jpg?raw=true)
+![comparison between DALL-E encoder/decoder and JPEG and WEBP compression](https://user-images.githubusercontent.com/1167575/130863554-d3d45aba-bc6b-4c08-9399-63824c6d8e2e.jpg)
 
 # Comparison to VQGAN
 
