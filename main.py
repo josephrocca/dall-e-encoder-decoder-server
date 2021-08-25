@@ -9,8 +9,7 @@ import torch.nn.functional as F
 import torchvision.transforms as T
 import torchvision.transforms.functional as TF
 
-from dall_e          import map_pixels, unmap_pixels, load_model
-from IPython.display import display, display_markdown
+from dall_e import map_pixels, unmap_pixels, load_model
 
 def download_image(url):
     resp = requests.get(url)
@@ -33,6 +32,7 @@ def preprocess(img, target_size):
 
 dev = torch.device("cuda:0" if torch.cuda.is_available() else "cpu")
 
+print("Loading models...")
 enc = load_model("./dall-e/encoder.pkl", dev)
 dec = load_model("./dall-e/decoder.pkl", dev)
 
@@ -88,4 +88,5 @@ def decode():
   x_rec = T.ToPILImage(mode='RGB')(x_rec[0])
   return serve_pil_image(x_rec)
 
+print("Server started.")
 serve(app, host="0.0.0.0", port=8080)
