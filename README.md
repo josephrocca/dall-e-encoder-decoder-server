@@ -16,7 +16,9 @@ wget --directory-prefix=./dall-e https://cdn.openai.com/dall-e/decoder.pkl
 # Omit `--gpus all` in the following command if you haven't installed nvidia's docker tooling (falls back to CPU)
 docker run --gpus all -v $PWD:/app -w /app -p 8080:8080 -it dall-e-encoder-decoder-server python3 main.py
 
-# After a little while it will say "Serving on http://0.0.0.0:8080", at which point the API is ready.
+# After a little while it will say "Server started.", at which point the API is ready. Visit http://0.0.0.0:8080
+# in your browser to test. If you'd like to change the port to 3000 (for example), then in the above `docker run ...`
+# command you'd change `-p 8080:8080` to `-p 3000:8080`.
 ```
 
 # Testing the API from your browser:
